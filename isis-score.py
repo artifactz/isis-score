@@ -64,19 +64,23 @@ def countScorez(catz, scorez, ccond, scond):
     return s, c
 
 def showRatingz(namez, mailz, catz, scorezz):
-    print '\t\t\t\thomework\tmilestones'
-    # homework categroy condition:
-    chw = lambda c : 'Aufgabenblatt' in c
+    print '\t\t\t\t(blatt 02)\thomework\tmilestonez'
+    # homework 1 categroy condition:
+    chw1 = lambda c : 'Aufgabenblatt 02' in c
+    # other homework categroy condition:
+    chw2 = lambda c : 'Aufgabenblatt' in c and not 'Aufgabenblatt 02' in c
     # milestone categroy condition:
     cms = lambda c : 'Meilenstein' in c
     # pass condition:
     cpass = lambda s : not 'nicht' in s
     for i in range(len(namez)):
-        hw_pass, hw_total = countScorez(catz, scorezz[i], chw, cpass)
-        ms_pass, ms_total = countScorez(catz, scorezz[i], cms, cpass)
-        print "%s\t%d/%d\t\t%d/%d" % (
+        hw1_pass, hw1_total = countScorez(catz, scorezz[i], chw1, cpass)
+        hw2_pass, hw2_total = countScorez(catz, scorezz[i], chw2, cpass)
+        ms_pass, ms_total   = countScorez(catz, scorezz[i],  cms, cpass)
+        print "%s\t%d/%d\t\t%d/%d\t\t%d/%d" % (
                 '{:<30}'.format(namez[i]),  # name
-                hw_pass, hw_total,          # homework
+                hw1_pass, hw1_total,        # homework 1
+                hw2_pass, hw2_total,        # homework 2-
                 ms_pass, ms_total
             )
 
